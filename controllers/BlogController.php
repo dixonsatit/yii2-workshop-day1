@@ -31,11 +31,12 @@ class BlogController extends Controller
    public function actionIndex(){
      return $this->render('index');
    }
+
    public function actionCreate(){
 
      $model = new Blog();
 
-     if($model->load(Yii::$app->request->post())){
+     if($model->load(Yii::$app->request->post()) && $model->validate()){
         echo $model->title.'<br>';
         echo $model->detail;
         return $this->redirect(['blog/index']);
@@ -46,7 +47,7 @@ class BlogController extends Controller
      ]);
    }
    // index.php?r=site/update&id=1
-   public function actionUpdate($id){
+   public function actionUpdate($id,$a=null,$c=null){
      return $this->render('update');
    }
 }
